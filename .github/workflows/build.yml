@@ -126,3 +126,77 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: release/libdav1dfile.1.dylib
+
+  iphoneos:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Homebrew
+        id: set-up-homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Install packages
+        run: brew install meson nasm ninja
+
+      - name: Get libdav1d
+        run: sh ext/dav1d_ios.sh
+
+      - name: Configure CMake (Release)
+        run: cmake -B release -G Ninja . -DCMAKE_SYSTEM_NAME=iOS -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES="arm64" -DCMAKE_OSX_DEPLOYMENT_TARGET=11.0 -DCMAKE_OSX_SYSROOT=`xcodebuild -version -sdk iphoneos Path` -DBUILD_SHARED_LIBS=OFF
+
+      - name: Build
+        run: ninja -C release
+
+      - name: Merge
+        run: libtool -static -o libdav1dfile.a release/libdav1dfile.a dav1d/build/src/libdav1d.a
+
+      - name: Archive build result
+        uses: actions/upload-artifact@v4
+        with:
+          name: dav1dfile-ios
+          path: libdav1dfile.a
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: libdav1dfile.a
+
+  appletvos:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Homebrew
+        id: set-up-homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Install packages
+        run: brew install meson nasm ninja
+
+      - name: Get libdav1d
+        run: sh ext/dav1d_tvos.sh
+
+      - name: Configure CMake (Release)
+        run: cmake -B release -G Ninja . -DCMAKE_SYSTEM_NAME=tvOS -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES="arm64" -DCMAKE_OSX_DEPLOYMENT_TARGET=11.0 -DCMAKE_OSX_SYSROOT=`xcodebuild -version -sdk appletvos Path` -DBUILD_SHARED_LIBS=OFF
+
+      - name: Build
+        run: ninja -C release
+
+      - name: Merge
+        run: libtool -static -o libdav1dfile.a release/libdav1dfile.a dav1d/build/src/libdav1d.a
+
+      - name: Archive build result
+        uses: actions/upload-artifact@v4
+        with:
+          name: dav1dfile-tvos
+          path: libdav1dfile.a
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: libdav1dfile.a
