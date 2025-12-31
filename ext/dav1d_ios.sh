@@ -21,5 +21,3 @@ MACOSX_DEPLOYMENT_TARGET=11.0 ninja
 
 cd ..
 cp ./build/src/libdav1d.a ./src/libdav1d.a
-pwd
-find .
