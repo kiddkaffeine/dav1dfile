@@ -149,19 +149,20 @@ jobs:
       - name: Build
         run: ninja -C release
 
+      - name: Merge
+        run: libtool -static -o libdav1dfile.a release/libdav1dfile.a dav1d/build/src/libdav1d.a
+
       - name: Archive build result
         uses: actions/upload-artifact@v4
         with:
           name: dav1dfile-ios
-          path: release/libdav1dfile.a
+          path: libdav1dfile.a
 
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: |
-            release/libdav1dfile.a
-            dav1d/src/libdav1d.a
+          files: libdav1dfile.a
 
   tvos:
     runs-on: macos-latest
@@ -185,16 +186,17 @@ jobs:
       - name: Build
         run: ninja -C release
 
+      - name: Merge
+        run: libtool -static -o libdav1dfile.a release/libdav1dfile.a dav1d/build/src/libdav1d.a
+
       - name: Archive build result
         uses: actions/upload-artifact@v4
         with:
           name: dav1dfile-tvos
-          path: release/libdav1dfile.a
+          path: libdav1dfile.a
 
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: |
-            release/libdav1dfile.a
-            dav1d/src/libdav1d.a
+          files: libdav1dfile.a
