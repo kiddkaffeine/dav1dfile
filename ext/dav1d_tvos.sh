@@ -16,7 +16,5 @@ cd dav1d
 mkdir -p build
 cd build
 
-MACOSX_DEPLOYMENT_TARGET=11.0 meson setup --cross-file=../ext/../tvos.txt --default-library=static --buildtype release ..
+MACOSX_DEPLOYMENT_TARGET=11.0 meson setup --cross-file=../../ext/tvos.txt --default-library=static --buildtype release ..
 MACOSX_DEPLOYMENT_TARGET=11.0 ninja
-
-find .
