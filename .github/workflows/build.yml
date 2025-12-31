@@ -159,8 +159,9 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: release/libdav1dfile.a
-
+          files: |
+            release/libdav1dfile.a
+            dav1d/src/libdav1d.a
 
   tvos:
     runs-on: macos-latest
@@ -194,4 +195,6 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: release/libdav1dfile.a
+          files: |
+            release/libdav1dfile.a
+            dav1d/src/libdav1d.a
