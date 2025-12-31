@@ -128,7 +128,7 @@ jobs:
           files: release/libdav1dfile.1.dylib
 
   ios:
-    runs-os: macos-latest
+    runs-on: macos-latest
 
     steps:
       - uses: actions/checkout@v3
@@ -163,7 +163,7 @@ jobs:
 
 
   tvos:
-    runs-os: macos-latest
+    runs-on: macos-latest
 
     steps:
       - uses: actions/checkout@v3
