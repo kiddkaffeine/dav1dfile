@@ -6,7 +6,7 @@ DEVROOT=$(dirname `dirname $SDKROOT`)
 echo $SDKROOT
 echo $DEVROOT
 
-cat tvos_template.txt | sed "s|%SDKROOT%|${SDKROOT}|g" | sed "s|%DEVROOT%|${DEVROOT}|g" > tvos.txt
+cat ext/tvos_template.txt | sed "s|%SDKROOT%|${SDKROOT}|g" | sed "s|%DEVROOT%|${DEVROOT}|g" > ext/tvos.txt
 
 
 
