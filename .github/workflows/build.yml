@@ -56,7 +56,7 @@ jobs:
 
     - name: Get libdav1d
       run: |
-        git clone -b `cat ext/libdav1d/VERSION` --depth 1 https://code.videolan.org/videolan/dav1d.git
+        git clone -b $(cat ext/libdav1d/VERSION) --depth 1 https://code.videolan.org/videolan/dav1d.git
 
     - name: Setup Python
       uses: actions/setup-python@v2
