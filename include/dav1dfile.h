@@ -74,7 +74,7 @@ DECLSPEC void df_videoinfo(
 	int *height,
 	PixelLayout *pixelLayout);
 
-CLSPEC void df_videoinfo2(
+DECLSPEC void df_videoinfo2(
 	AV1_Context *context,
 	int *width,
 	int *height,
