@@ -10,7 +10,7 @@ cat ext/meson/ios_template.txt | sed "s|%SDKROOT%|${SDKROOT}|g" | sed "s|%DEVROO
 
 
 
-git clone -b `echo ext/dav1d/VERSION` --depth 1 https://code.videolan.org/videolan/dav1d.git
+git clone -b `cat ext/dav1d/VERSION` --depth 1 https://code.videolan.org/videolan/dav1d.git
 
 cd dav1d
 mkdir -p build
