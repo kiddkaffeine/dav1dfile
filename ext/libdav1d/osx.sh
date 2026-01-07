@@ -1,7 +1,7 @@
 : # Run this before configuring CMake.
 : # meson and ninja must be in your PATH.
 
-git clone -b `cat ext/dav1d/VERSION` --depth 1 https://code.videolan.org/videolan/dav1d.git
+git clone -b `cat ext/libdav1d/VERSION` --depth 1 https://code.videolan.org/videolan/dav1d.git
 
 cd dav1d
 mkdir -p arm64
