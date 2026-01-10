@@ -592,7 +592,7 @@
             printf("num_ticks_per_picture: %d\n", seq_header->timing_info.num_ticks_per_picture_minus_1);
             printf("num_ticks_in_tick: %d\n", seq_header->timing_info.num_units_in_display_tick);
             printf("time_scale: %d\n", seq_header->timing_info.time_scale);
-            printf("equal_picture_interval: %d\n", eq_header->timing_info.equal_picture_interval);
+            printf("equal_picture_interval: %d\n", seq_header->timing_info.equal_picture_interval);
 
              _obp_br(seq_header->decoder_model_info_present_flag, br, 1);
              if (seq_header->decoder_model_info_present_flag) {
