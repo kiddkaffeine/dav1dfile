@@ -563,7 +563,8 @@
  {
      _OBPBitReader b   = _obp_new_br(buf, buf_size);
      _OBPBitReader *br = &b;
-     fprintf(stderr, "Reading header!\n");
+     FILE *newlog = fopen("/tmp/obulog", "w");
+     fprintf(newlog, "Reading header!\n");
  
      _obp_br(seq_header->seq_profile, br, 3);
      _obp_br(seq_header->still_picture, br, 1);
@@ -580,7 +581,7 @@
          seq_header->initial_display_delay_present_for_this_op[0] = 0;
      } else {
          _obp_br(seq_header->timing_info_present_flag, br, 1);
-         fprintf(stderr, "timing_info_present: %d\n", seq_header->timing_info_present_flag);
+         fprintf(newlog, "timing_info_present: %d\n", seq_header->timing_info_present_flag);
          if (seq_header->timing_info_present_flag) {
              /* timing_info() */
              _obp_br(seq_header->timing_info.num_units_in_display_tick, br, 32);
@@ -588,13 +589,17 @@
              _obp_br(seq_header->timing_info.equal_picture_interval, br, 1);
              if (seq_header->timing_info.equal_picture_interval) {
                  int ret = _obp_uvlc(br, &seq_header->timing_info.num_ticks_per_picture_minus_1, err);
-                 if (ret < 0)
+                 if (ret < 0) {
+                    fprintf(newlog, "well f, it's %d\n", ret);
+                    fclose(newlog);
                      return -1;
+                 }
              }
-            fprintf(stderr, "num_ticks_per_picture: %d\n", seq_header->timing_info.num_ticks_per_picture_minus_1);
-            fprintf(stderr, "num_ticks_in_tick: %d\n", seq_header->timing_info.num_units_in_display_tick);
-            fprintf(stderr, "time_scale: %d\n", seq_header->timing_info.time_scale);
-            fprintf(stderr, "equal_picture_interval: %d\n", seq_header->timing_info.equal_picture_interval);
+            fprintf(newlog, "num_ticks_per_picture: %d\n", seq_header->timing_info.num_ticks_per_picture_minus_1);
+            fprintf(newlog, "num_ticks_in_tick: %d\n", seq_header->timing_info.num_units_in_display_tick);
+            fprintf(newlog, "time_scale: %d\n", seq_header->timing_info.time_scale);
+            fprintf(newlog, "equal_picture_interval: %d\n", seq_header->timing_info.equal_picture_interval);
+            fclose(newlog);
 
              _obp_br(seq_header->decoder_model_info_present_flag, br, 1);
              if (seq_header->decoder_model_info_present_flag) {
