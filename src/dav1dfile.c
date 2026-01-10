@@ -171,6 +171,12 @@ int df_open_from_memory(uint8_t *bytes, uint32_t size, AV1_Context **context)
 			internalContext->height = sequenceHeader.max_height;
 			internalContext->pixelLayout = (PixelLayout) sequenceHeader.layout;
 			internalContext->hbd = sequenceHeader.hbd;
+
+			printf("timing_info_present: %d\n", sequenceHeader.timing_info_present_flag);
+			printf("num_ticks_per_picture: %d\n", ssequenceHeader.iming_info.num_ticks_per_picture);
+			printf("num_ticks_in_tick: %d\n", ssequenceHeader.timing_info.num_units_in_display_tick);
+			printf("time_scale: %d\n", sequenceHeader.timing_info.time_scale);
+			printf("equal_picture_interval: %d\n", sequenceHeader.timing_info.equal_picture_interval);
 			break;
 		}
 	}
