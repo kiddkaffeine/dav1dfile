@@ -173,7 +173,7 @@ int df_open_from_memory(uint8_t *bytes, uint32_t size, AV1_Context **context)
 			internalContext->hbd = sequenceHeader.hbd;
 
 			printf("timing_info_present: %d\n", sequenceHeader.timing_info_present_flag);
-			printf("num_ticks_per_picture: %d\n", ssequenceHeader.num_ticks_per_picture);
+			printf("num_ticks_per_picture: %d\n", sequenceHeader.num_ticks_per_picture);
 			printf("num_ticks_in_tick: %d\n", sequenceHeader.num_units_in_tick);
 			printf("time_scale: %d\n", sequenceHeader.time_scale);
 			printf("equal_picture_interval: %d\n", sequenceHeader.equal_picture_interval);
