@@ -177,6 +177,11 @@ int df_open_from_memory(uint8_t *bytes, uint32_t size, AV1_Context **context)
 			printf("num_ticks_in_tick: %d\n", sequenceHeader.num_units_in_tick);
 			printf("time_scale: %d\n", sequenceHeader.time_scale);
 			printf("equal_picture_interval: %d\n", sequenceHeader.equal_picture_interval);
+			printf("display_model_info_present: %d\n", sequenceHeader.display_model_info_present);
+			printf("num_operating_points: %d\n", sequenceHeader.num_operating_points);
+			printf("sb128: %d\n", sequenceHeader.sb128);
+			printf("filter_intra: %d\n", sequenceHeader.filter_intra);
+			printf("intra_edge_filter: %d\n", sequenceHeader.intra_edge_filter);
 			break;
 		}
 	}
