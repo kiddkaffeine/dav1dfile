@@ -283,6 +283,8 @@ int df_guessframerate(
 	AV1_Context *context,
 	double *fps
 ) {
+	Context *internalContext = (Context*) context;
+
 	// Note that most encoders do not set this information by default
 	if (internalContext->timing_info_present && internalContext->equal_picture_interval) {
 		*fps = (double)internalContext->time_scale / (internalContext->num_ticks_per_picture * internalContext->num_units_in_tick);
